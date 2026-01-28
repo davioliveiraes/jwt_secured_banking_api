@@ -1,5 +1,5 @@
 from typing import Dict
-from src.controllers.user_register import UserRegister
+from .user_register import UserRegister
 
 class MockUserRespository:
     def __init__(self) -> None:
