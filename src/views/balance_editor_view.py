@@ -9,7 +9,7 @@ class BalanceEditorView(ViewInterface):
         self.__controller = controller
     
     def handle(self, http_request: HttpRequest) -> HttpReponse:
-        user_id = http_request.body.get("user_id")
+        user_id = http_request.params.get("user_id")
         new_balance = http_request.body.get("new_balance")
         self.__validate_inputs(user_id, new_balance)
 
