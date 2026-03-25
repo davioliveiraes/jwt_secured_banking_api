@@ -1,6 +1,7 @@
 from typing import Dict
 from src.models.interface.user_repository import UserRepositoryInterface
 from .interfaces.balance_editor import BalanceEditorInterface
+from src.errors.types.http_bad_request import HttpBadRequestError
 
 class BalanceEditor(BalanceEditorInterface):
     def __init__(self, user_repository: UserRepositoryInterface) -> None:
@@ -13,7 +14,7 @@ class BalanceEditor(BalanceEditorInterface):
 
     def __validate_balance(self, new_balance: float) -> None:
         if new_balance < 0:
-            raise Exception("O saldo não pode ser negativo")
+            raise HttpBadRequestError("O saldo não pode ser negativo")
     
     def __update_balance(self, user_id: int, new_balance: float) -> None:
         self.__user_repository.edit_balance(user_id, new_balance)
